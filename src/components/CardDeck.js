@@ -3,10 +3,10 @@ const suits = ["D","S","H","C"]
 
 class CardDeck {
   cards = [];
-  max = 51;
+  max = 52;
 
   newDeck = (check) => {
-    this.cards= [];
+    this.cards=[];
     suits.forEach(suit => {
       let val = 1;
       for(var rank of ranks) {
@@ -14,10 +14,11 @@ class CardDeck {
         this.cards.push({rank:rank, suit:suit, val:val, checked:check, add:'back'});
       }
     })
+    this.max = 52
   }
 
   getCard = ()  => {
-    let random = Math.floor(Math.random() *(this.max +1));
+    const random = Math.floor(Math.random() * (this.max));
     let card = this.cards[random];
     this.cards.splice(random, 1);
     this.max --;

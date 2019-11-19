@@ -50,17 +50,17 @@ class App extends Component {
     let cash = this.state.cash;
     let check = true;
     let bet = this.state.bet; 
+    let combs = this.state.combs;
     let cards = [...this.state.cards];
     if (myBet !== undefined) {
       check = false;
       cash -= myBet
+      combs = 'You can replace 1 to 5 cards if you need'
     }
     deck.newDeck(check);
- 
-    cards = deck.getCards(5);
-    
-    bet = myBet
-    this.setState({cards,bet,cash});
+      cards = deck.getCards(5);
+      bet = myBet
+      this.setState({cards,bet,cash,combs});
   }
 
   ifChecked = (e, i) => {
@@ -69,6 +69,7 @@ class App extends Component {
     if (e.target.checked && bet > 0) {
      cards[i].add = 'back'
      cards[i].checked = true;
+     e.target.checked = false;
     } else {
      cards[i].add = '';
      cards[i].checked = false;
@@ -83,7 +84,7 @@ class App extends Component {
       btnBetClass = 'd-none'
     } 
     this.state.cards.forEach(card => {
-      if (card.checked && this.state.bet > 0) {
+      if (this.state.bet > 0) {
         btnDealClass = 'btn btn-secondary'
       }
     })
@@ -105,8 +106,9 @@ class App extends Component {
             check={card.checked}
             back = {(e) => this.ifChecked(e, i)}/>
           ))}
+          <p>Card left: {deck.cards.length}</p> 
           <p>Your bet: {this.state.bet}$</p> 
-          <p>Your combinations: {this.state.combs}</p>
+          <p>{this.state.combs}</p>
           <p>Your wins: {this.state.wins}$</p>
           <p>Your cash: {this.state.cash}$</p>
         </div>
