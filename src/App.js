@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import Card from './Card'
-import CardDeck from './CardDeck';
-import PokerHand from './PokerHand';
+import Card from './components/Card'
+import CardDeck from './components/CardDeck';
+import PokerHand from './components/PokerHand';
 import './cards.css'
 import './App.css'
-import './bootstrap.min.css'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 const deck = new CardDeck();
 const hand = new PokerHand();
